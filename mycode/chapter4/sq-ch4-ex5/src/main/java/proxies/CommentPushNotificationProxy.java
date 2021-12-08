@@ -2,8 +2,10 @@ package proxies;
 
 import model.Comment;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Primary;
 
 @Component
+@Primary
 public class CommentPushNotificationProxy implements CommentNotificationProxy {
 
     @Override
