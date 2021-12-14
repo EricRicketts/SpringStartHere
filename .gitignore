@@ -14,8 +14,8 @@
 mvnw
 mvnw.*
 
-# gitignore in lower directories
-*/.gitignore
+# gitignore
+.gitignore
 
 # Package Files #
 *.jar
