@@ -10,6 +10,13 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# maven wrapper files
+mvnw
+mvnw.*
+
+# gitignore in lower directories
+*/.gitignore
+
 # Package Files #
 *.jar
 *.war
@@ -24,3 +31,4 @@ hs_err_pid*
 target/
 code/
 .idea/
+.mvn/
