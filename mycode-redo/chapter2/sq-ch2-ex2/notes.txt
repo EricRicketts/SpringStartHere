@@ -15,3 +15,11 @@ can use the context method "getBean" to retrieve the desired bean from the conte
 It is important to understand in this way of adding Beans to the Spring Context what is actually happening is that
 when Spring initializes its context, it calls the methods defined in the configuration class so that the beans are
 added to the context during context initialization.
+
+Notice for sq-ch2-ex2 we had other beans of String and Integer types.  Note when in the application file, we got the
+Parrot Bean, p, and then used the instance method "getName" to get the name of the Parrot Bean.  However, for both the
+String and Integer Beans, we just got them from the context and printed them out using println.  Why did we not call
+s.hello() or i.ten()?  This is because when Spring adds these objects to the context by calling the methods defined in
+the configuration class.  In the case of Parrot parrot() the method returns an instance of the Parrot class, so the
+user can call methods on that instance.  In the case of the String and Integer classes both those methods return
+literals so when you get them from the context you get the results of calling those methods.
