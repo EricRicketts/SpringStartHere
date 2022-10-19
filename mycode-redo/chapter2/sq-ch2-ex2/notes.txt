@@ -1,0 +1,17 @@
+In this project and many to follow we are using a separate configuration class to add beans to the Spring Context.
+A Bean is nothing more than an object which is placed into the Spring Context.
+
+In this project we define the classes which produce the objects in the package main.
+In this project we define the beans in the ProjectConfig class which is in the config package.
+
+The steps to add a Bean to the Spring Context via a configuration class are:
+
+1.  Define a configuration class (ProjectConfig) in the config package.  Add a @Configuration annotation to the class.
+2.  Add a method to the configuration class which returns the object instance you want to add to the context.  You will
+add the @Bean annotation to this method.
+3.  In the entry point to the application, initialize a context using the configuration class as an argument.  One then
+can use the context method "getBean" to retrieve the desired bean from the context.
+
+It is important to understand in this way of adding Beans to the Spring Context what is actually happening is that
+when Spring initializes its context, it calls the methods defined in the configuration class so that the beans are
+added to the context during context initialization.
