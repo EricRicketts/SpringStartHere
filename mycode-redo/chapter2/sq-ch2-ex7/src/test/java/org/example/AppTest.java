@@ -1,38 +1,29 @@
 package org.example;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import config.ProjectConfig;
+import main.Parrot;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ProjectConfig.class})
+public class AppTest {
+
+  @Autowired
+  private ApplicationContext context;
+
+  @Test
+  @DisplayName("@PostConstruct can be used to initialize a bean immediately after registering it into the context")
+  public void testPostConstructAnnotation() {
+    var p = context.getBean(Parrot.class);
+    assertEquals("Kiki", p.getName());
+  }
 }
