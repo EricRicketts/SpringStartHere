@@ -1,38 +1,43 @@
 package org.example;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import config.ProjectConfig;
+import main.Parrot;
+import main.Person;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ProjectConfig.class})
+public class AppTest {
+  private String expected;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+  @Autowired
+  private ApplicationContext context;
+
+  @Test
+  @DisplayName("context has a parrot bean")
+  public void testContextHasParrotBean() {
+    assertTrue(context.containsBean("parrot"));
+  }
+
+  @Test
+  @DisplayName("context has a person bean")
+  public void testContextHasPersonBean() {
+    assertTrue(context.containsBean("person"));
+  }
+
+  @Test
+  @DisplayName("context has a person bean with no parrot instance")
+  public void testContextHasPersonBeanWithNoParrotInstance() {
+    var person = context.getBean("person", Person.class);
+    assertNull(person.getParrot());
+  }
 }
