@@ -13,6 +13,6 @@ public class App {
 
     System.out.println(parrot.getName());
     System.out.println(person.getName());
-    System.out.println(person.getParrot() == null);
+    System.out.println(person.getParrot() == parrot);
   }
 }
